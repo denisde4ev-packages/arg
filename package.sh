@@ -120,16 +120,16 @@ esac
 
 
 # if standalone packaging
-case ${0##*/} in build.sh)
+case ${0##*/} in package.sh)
 	[ -d out ] || mkdir out
 	[ -d src ] || mkdir src
 	[ -d pkg ] || mkdir pkg
 	startdir=$PWD
 	pkgdir=$PWD/pkg
 	srcdir=$PWD/src
-	_prepare
-	build
-	check
-	package
-	( cd pkg; tar -cvf - . ) > ./$pkgname@$pkgver-$pkgrel.pkg.tar
+	_prepare; cd "$startdir"
+	build; cd "$startdir"
+	check; cd "$startdir"
+	package; cd "$startdir"
+	( cd pkg; tar -cvf - . ) > ./out/"$pkgname@$pkgver-$pkgrel.pkg.tar"
 esac
