@@ -1,0 +1,8 @@
+**/src/
+**/pkg/
+
+**/*.tar
+**/*.tar.*
+**/*.tar+thepkg
+**/*.thepkg
+**/*.thepkg.*
