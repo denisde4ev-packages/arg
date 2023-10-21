@@ -4,7 +4,7 @@ case ${0##*/} in build.sh)
 	set -eu
 	cd "${0%/*}" || exit
 	[ -w . ] || {
-		printf %s\\n "no write permissions for PWD"
+		printf %s\\n "no write permissions for script's dirname"
 		exit 3
 	}
 esac
