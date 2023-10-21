@@ -1,6 +1,6 @@
 #!/bin/sh
 
-case ${0##*/} in build.sh)
+case ${0##*/} in package.sh)
 	set -eu
 	cd "${0%/*}" || exit
 	[ -w . ] || {
@@ -131,5 +131,5 @@ case ${0##*/} in package.sh)
 	build; cd "$startdir"
 	check; cd "$startdir"
 	package; cd "$startdir"
-	( cd pkg; tar -cvf - . ) > ./out/"$pkgname@$pkgver-$pkgrel.pkg.tar"
+	( cd "$pkgdir" && tar -cvf - . ) > ./out/"$pkgname@$pkgver-$pkgrel.pkg.tar"
 esac
