@@ -18,7 +18,7 @@ esac
 	_ghstats=$(curl -s "https://api.github.com/repos/denisde4ev/$_reponame/commits/master")
 	#_commit_date=$(printf %s\\n "$_ghstats" | jq -r '.commit.committer.date[0:10]')
 	_commit_date=$(printf %s\\n "$_ghstats" | jq -r '(.commit.committer.date | strptime("%Y-%m-%dT%H:%M:%SZ") | strftime("%Y_%m_%d"))')
-	_commit_sha=$(printf %s\\n "$_ghstats" | jq -r '.sha[0:8]')
+	_commit_sha=$(printf %s\\n "$_ghstats" | jq -r '.sha[0:6]')
 }
 
 { # PKGBUILD vars/fns
@@ -26,7 +26,7 @@ esac
 
 	pkgname=denisde4ev-arg-clang-git
 	pkgver=${_commit_date}.${_commit_sha}
-	case $pkgver in 20[0-9][0-9]_[0-9][0-9]_[0-9][0-9].[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]) ;; *)
+	case $pkgver in 20[0-9][0-9]_[0-9][0-9]_[0-9][0-9].[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]) ;; *)
 		printf %s\\n >&2 "bad pkgver=$pkgver"
 		exit 3
 	esac
